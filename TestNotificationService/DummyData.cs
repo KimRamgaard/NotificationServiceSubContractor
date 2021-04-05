@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using AeldreplejeCore.Core.Entity;
 
-namespace Dummy
+namespace TestNotificationService
 {
     public class DummyData
     {
 
         string password = "password";
         byte[] passwordHashUserOne, passwordSaltUserOne, passwordHashUserTwo, passwordSaltUserTwo;
-        private User userNormal2;
-        private User userNormal;
-        private User userNormal3;
-        private User userAdmin;
-        private PendingShift pShift1;
+        public User userNormal2 { get; }
+        public User userNormal { get; }
+        public User userNormal3 { get; }
+        public User userAdmin { get; }
+        public PendingShift pShift1 { get; }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -151,7 +151,6 @@ namespace Dummy
                 ShiftQualificationNumber = 3,
                 TimeStart = new DateTime(2021, 1, 1, 10, 0, 0),
                 TimeEnd = new DateTime(2021, 1, 1, 18, 0, 0)
-
             };
             var shift2 = new Shift()
             {

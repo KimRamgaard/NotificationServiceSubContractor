@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "Dummy\Dummy.csproj", "{9E0B2225-4B3E-4061-B6F0-DE049194FB79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy", "Dummy\Dummy.csproj", "{9E0B2225-4B3E-4061-B6F0-DE049194FB79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNotificationService", "TestNotificationService\TestNotificationService.csproj", "{5CB8C06B-A712-4DA1-8F4D-867D2D0693AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9E0B2225-4B3E-4061-B6F0-DE049194FB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0B2225-4B3E-4061-B6F0-DE049194FB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0B2225-4B3E-4061-B6F0-DE049194FB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB8C06B-A712-4DA1-8F4D-867D2D0693AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB8C06B-A712-4DA1-8F4D-867D2D0693AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB8C06B-A712-4DA1-8F4D-867D2D0693AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB8C06B-A712-4DA1-8F4D-867D2D0693AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Dummy
 {
-    class NotificationService : INotificationService
+    public class NotificationService : INotificationService
     {
 
 
@@ -20,12 +20,22 @@ namespace Dummy
          */
         public List<User> GetValidUsers(PendingShift shift, List<User> allUsers, int x)
         {
+            if (shift.Shift is null)
+            {
+                throw new ArgumentNullException("the Pending shift are requried to have a valid shift");
+            }
+
+
             List<User> validUsers = new List<User>();
             
             foreach (User user in allUsers)
             {
-                
-                if( !IsUserQualified(shift, user))
+                if (user.IsAdmin)
+                {
+                    break;
+                }
+
+                if ( !IsUserQualified(shift, user))
                 {
                     break;
                 }
@@ -40,10 +50,7 @@ namespace Dummy
                     break;
                 }
 
-                if (user.IsAdmin)
-                {
-                    break;
-                }
+                
 
 
                 validUsers.Add(user);
@@ -57,10 +64,17 @@ namespace Dummy
         // 1. User qualification number >= shift qualification number
         private bool IsUserQualified(PendingShift shift, User user)
         {
+            if (user.Group is null)
+            {
+                throw new ArgumentNullException("The user must be assigned a group");
+            }
+
+
             int shiftQualityLevel = shift.Shift.ShiftQualificationNumber;
+            
             int userQualityLevel = user.Group.QualificationNumber;
 
-            if (shiftQualityLevel >= userQualityLevel)
+            if (shiftQualityLevel > userQualityLevel)
             {
                 return false;
             }
@@ -80,14 +94,14 @@ namespace Dummy
             {
                 if (pshift.Shift.Date == usershift.Date) 
                 {
-                    if(pshift.Shift.TimeStart > usershift.TimeStart &
-                        pshift.Shift.TimeStart < usershift.TimeEnd)
+                    if(pshift.Shift.TimeStart.TimeOfDay > usershift.TimeStart.TimeOfDay &
+                        pshift.Shift.TimeStart.TimeOfDay < usershift.TimeEnd.TimeOfDay)
                     {
                         return true;
                     }
 
-                    if (pshift.Shift.TimeEnd > usershift.TimeStart &
-                        pshift.Shift.TimeEnd < usershift.TimeEnd)
+                    if (pshift.Shift.TimeEnd.TimeOfDay > usershift.TimeStart.TimeOfDay &
+                        pshift.Shift.TimeEnd.TimeOfDay < usershift.TimeEnd.TimeOfDay)
                     {
                         return true;
                     }
@@ -111,7 +125,7 @@ namespace Dummy
             foreach (Shift shift in user.Shifts)
             {
                 int currentShiftWeekNo = calendar.GetWeekOfYear(shift.Date, culInf.DateTimeFormat.CalendarWeekRule, culInf.DateTimeFormat.FirstDayOfWeek);
-                if (newShiftWeekNo == currentShiftWeekNo)
+                if (newShiftWeekNo == currentShiftWeekNo && calendar.GetYear(shift.Date) == calendar.GetYear(newShiftDate))
                 {
                     NoOfShiftsInWeek += 1;
                 }
