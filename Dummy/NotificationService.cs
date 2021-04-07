@@ -50,9 +50,6 @@ namespace Dummy
                     break;
                 }
 
-                
-
-
                 validUsers.Add(user);
             }
 
